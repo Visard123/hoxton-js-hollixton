@@ -1,0 +1,90 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 60px 1fr 60px;
+  height: 100vh;
+}
+img {
+  width: 100%;
+}
+header {
+  background-color: blue;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+
+  gap: 30px;
+  align-content: center;
+  padding: 20px;
+}
+
+header .genders-list {
+  display: grid;
+  grid-auto-flow: column;
+  align-content: center;
+  gap: 20px;
+  justify-self: start;
+}
+
+header .genders-list li {
+  list-style: none;
+}
+
+header .right-elements {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 20px;
+  justify-self: end;
+  align-content: center;
+}
+
+main {
+  background-color: brown;
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  gap: 10px;
+  padding: 20px;
+}
+main h2 {
+  color: #10234b;
+}
+
+main .products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.products-list li {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+.products-list h3 {
+  color: #10234b;
+}
+.products-list p {
+  font-size: 20px;
+  font-weight: 700;
+  color: #10234b;
+}
+
+footer {
+  background-color: chartreuse;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-content: center;
+  padding: 20px;
+}
+
+footer .national-emblems {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-self: end;
+}
