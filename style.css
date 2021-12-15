@@ -8,6 +8,7 @@ body {
   display: grid;
   grid-template-rows: 60px 1fr 60px;
   height: 100vh;
+  font-family: sans-serif;
 }
 img {
   width: 100%;
@@ -43,7 +44,7 @@ header .right-elements {
 }
 
 main {
-  background-color: brown;
+  background-color: #ffffff;
   display: grid;
   grid-template-rows: 40px 1fr;
   gap: 10px;
@@ -58,19 +59,47 @@ main .products-list {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
-.products-list li {
+main .products-list li {
   list-style: none;
   display: grid;
   gap: 10px;
   padding-bottom: 20px;
+  position: relative;
 }
-.products-list h3 {
+main .products-list h3 {
   color: #10234b;
+  font-size: 16px;
 }
-.products-list p {
-  font-size: 20px;
+main .products-list p {
+  font-size: 16px;
   font-weight: 700;
   color: #10234b;
+}
+main .product-prices {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: 10px;
+}
+.product-fullprice.discounted {
+  text-decoration: line-through;
+  font-weight: 300;
+  opacity: 0.5;
+}
+
+main .price-discount {
+  color: red;
+}
+.new-product {
+  background-color: rgb(106, 106, 231);
+  position: absolute;
+  top: -29px;
+  right: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 7px;
+  color: white;
+  font-size: 13px;
 }
 
 footer {

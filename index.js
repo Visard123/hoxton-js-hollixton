@@ -12,6 +12,25 @@ function getProdutsToStore() {
 }
 getProdutsToStore();
 
+function isProductNew(product) {
+  const dayToConsider = 11;
+
+  // checking the miliseconds in 10 day
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  const msForTenDaysAgo = Date.now() - day * dayToConsider;
+
+  //get miliseconds for current product
+  const msForProductDate = Date.parse(product.dateEntered);
+
+  // comparing if product ms is more than 10 days ago
+
+  return msForProductDate > msForTenDaysAgo;
+}
+
 function renderTheHeader() {
   const headerOfPage = document.createElement("header");
 
@@ -67,14 +86,18 @@ function renderTheMain() {
   const mainElement = document.createElement("main");
   /*
 <main>
-    <h2>Home</h2>
-    <ul class= products-list>
-        <li >
-            <img src="" alt="">
-            <h3>Product Name </h3>
-            <p>Price</p>
-        </li>
-    </ul>
+  <h2>Home</h2>
+  <ul class="products-list">
+    <li>
+      <img src="" alt="" />
+      <h3></h3>
+      <p class="product-prices">
+        <span class="product-fullprice"></span>
+        <span class="price-discount"></span>
+      </p>
+      <span class=new-product> New!</span>
+    </li>
+  </ul>
 </main>
 */
 
@@ -95,10 +118,33 @@ function renderTheMain() {
     productName.textContent = product.name;
 
     const productPrice = document.createElement("p");
-    productPrice.textContent = product.price;
+    productPrice.setAttribute("class", "product-prices");
 
+    const productFullPrice = document.createElement("span");
+    productFullPrice.setAttribute("class", "product-fullprice");
+    productFullPrice.textContent = "£" + product.price;
+
+    productPrice.append(productFullPrice);
+
+    // if there is a discount available
+    if (product.discountedPrice) {
+      // add an alternative class with js to help us style it if the (if==true)
+      productFullPrice.classList.add("discounted");
+
+      // if there is a discount we create and add the span of price-discount
+      const productPriceDiscount = document.createElement("span");
+      productPriceDiscount.setAttribute("class", "price-discount");
+      productPriceDiscount.textContent = "£" + product.discountedPrice;
+      productPrice.append(productPriceDiscount);
+    }
     productAttributeList.append(imageOfProduct, productName, productPrice);
 
+    if (isProductNew(product)) {
+      const newProduct = document.createElement("span");
+      newProduct.setAttribute("class", "new-product");
+      newProduct.textContent = "New!";
+      productAttributeList.append(newProduct);
+    }
     producstList.append(productAttributeList);
   }
 
@@ -139,6 +185,7 @@ function renderTheFooter() {
 
 function render() {
   document.body.innerHTML = "";
+
   renderTheHeader();
   renderTheMain();
   renderTheFooter();
